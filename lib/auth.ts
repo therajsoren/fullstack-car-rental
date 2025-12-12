@@ -16,7 +16,13 @@ const getJwtSecret = () => {
   return secret;
 };
 
-const JWT_SECRET = new TextEncoder().encode(getJwtSecret());
+let _jwtSecret: Uint8Array | null = null;
+const getEncodedSecret = () => {
+  if (!_jwtSecret) {
+    _jwtSecret = new TextEncoder().encode(getJwtSecret());
+  }
+  return _jwtSecret;
+};
 const COOKIE_NAME = "auth_token";
 
 export async function hashPassword(password: string): Promise<string> {
@@ -35,7 +41,7 @@ export async function createSession(userId: string): Promise<string> {
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
     .setExpirationTime("7d")
-    .sign(JWT_SECRET);
+    .sign(getEncodedSecret());
 
   return token;
 }
@@ -44,7 +50,7 @@ export async function verifySession(
   token: string
 ): Promise<{ userId: string } | null> {
   try {
-    const { payload } = await jwtVerify(token, JWT_SECRET);
+    const { payload } = await jwtVerify(token, getEncodedSecret());
     return payload as { userId: string };
   } catch {
     return null;

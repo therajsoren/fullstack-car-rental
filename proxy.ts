@@ -14,7 +14,13 @@ const getJwtSecret = () => {
   return secret;
 };
 
-const JWT_SECRET = new TextEncoder().encode(getJwtSecret());
+let _jwtSecret: Uint8Array | null = null;
+const getEncodedSecret = () => {
+  if (!_jwtSecret) {
+    _jwtSecret = new TextEncoder().encode(getJwtSecret());
+  }
+  return _jwtSecret;
+};
 
 const publicRoutes = [
   "/",
@@ -42,14 +48,14 @@ function isPublicRoute(pathname: string): boolean {
 
 async function verifyToken(token: string): Promise<{ userId: string } | null> {
   try {
-    const { payload } = await jwtVerify(token, JWT_SECRET);
+    const { payload } = await jwtVerify(token, getEncodedSecret());
     return payload as { userId: string };
   } catch {
     return null;
   }
 }
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (isPublicRoute(pathname)) {

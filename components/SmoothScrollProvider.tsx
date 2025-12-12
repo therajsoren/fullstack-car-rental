@@ -31,12 +31,6 @@ export default function SmoothScrollProvider({
       smooth: true,
       multiplier: 1,
       lerp: 0.1,
-      smartphone: {
-        smooth: true,
-      },
-      tablet: {
-        smooth: true,
-      },
     });
 
     // Update scroll on resize
