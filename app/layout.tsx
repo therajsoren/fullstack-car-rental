@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "VELOCE - Premium Car Rental Service",
     description:
-      "Luxury Meets the Open Road. Choose from 500+ premium vehicles.",
+      "Luxury Meets the Open Road. Choose from 10+ premium vehicles.",
     type: "website",
   },
 };

@@ -50,7 +50,7 @@ const Footer = () => {
               style={{ fontFamily: "'DM Sans', sans-serif" }}
             >
               Your trusted partner for premium car rentals and luxury vehicle
-              experiences since 2009.
+              experiences since 2020.
             </p>
             {/* Social Icons */}
             <div className="flex gap-3 mt-6">

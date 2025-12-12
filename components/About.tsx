@@ -8,9 +8,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const stats = [
-  { value: "15+", label: "Years Experience" },
-  { value: "50K+", label: "Happy Customers" },
-  { value: "500+", label: "Premium Cars" },
+  { value: "5+", label: "Years Experience" },
+  { value: "1K+", label: "Happy Customers" },
+  { value: "10+", label: "Premium Cars" },
   { value: "24/7", label: "Support" },
 ];
 
@@ -117,7 +117,7 @@ const About = () => {
           <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-medium mt-4 text-gray-900">
             Driving Excellence
             <br />
-            Since 2009
+            Since 2020
           </h2>
         </div>
 
